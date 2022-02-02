@@ -26,7 +26,7 @@ _entry:
     mov             cr0, eax            ; Control Register Bit 1 = 0 -> protectedmode
     jmp             CODE_SEG: _entry32  ; long-jump into the _entry32 label 
 
-%include "..GDT/GDT.asm"
+%include "../GDT/GDT.asm"
 
 [bits 32]
 
