@@ -1,0 +1,5 @@
+assemble the binary by typing:
+$ nasm -f bin boot.asm -o boot.bin
+
+execute the binary in QEMU with the following command:
+$ qemu-system-i386 -m 20 boot.bin
