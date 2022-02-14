@@ -1,5 +1,4 @@
 #include "../../include/crstd.h"
-#include <inttypes.h>
 void _start()
 {
 	//this is a test string
