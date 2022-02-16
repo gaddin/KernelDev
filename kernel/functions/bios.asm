@@ -1,0 +1,12 @@
+VIDEO_MODE equ 0x0
+
+SET_COLOR equ 0x6
+
+READ_DISK equ 0x2
+
+DISK equ 0x13
+
+VGA equ 0x10
+
+VGA_TTY equ 0x2
+
