@@ -62,5 +62,8 @@ times 510($-$$) db 0
 dw 0xAA55			;bootsig
 
 _sector2:
-	call kernel	
+	mov [0xb8000], 'O'
+	mov [0xb8002], 'O'
+	mov [0xb8004], 'F'
+call kernel	
 times 1024($-$$) db 0		; padding for second sector
