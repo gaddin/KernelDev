@@ -13,10 +13,10 @@ _entry16:
 	xor cx, cx
 	mov dx, 0x184f
 	int 0x10
-	mov ah, 0x2		;
-	mov al, 0x80		; <---TODO: FIX DAT SHIT(maybe)
-	mov ch, 0x1		;
-	mov cl, 0x2		;
+	mov ah, 0x2		
+	mov al, 0x80		
+	mov ch, 0x1		
+	mov cl, 0x2		
 	mov dh, 0x80
 	mov dl, 0x1
 	mov bx, 0x7e00
