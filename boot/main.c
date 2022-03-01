@@ -39,7 +39,7 @@ void prints(const char str[256], char col, char row)
 }
 char vga_color(char fg, char bg)
 {
-	return (fg | (bg<<4)); /*the high byte is split into fore and background so we need to shift the background by 4 to "or" it correctly*/
+	return (fg | (bg<<4));
 }
 const char* reverse_string(char bytes[])
 {
