@@ -33,7 +33,8 @@ void prints(const char str[256], char col, char row)
 	{
 		printc(str[i], col+i, row);
 		i++;
-	}while(str[i]);	
+	}
+	while(str[i]);	
 	return;
 }
 char vga_color(char fg, char bg)
