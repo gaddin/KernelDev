@@ -68,17 +68,6 @@ pm:
 times 510 - ($-$$) db 0
 dw 0xaa55
 sec2:
-	mov byte [0xb8000], 'O'
-	mov byte [0xb8002], 'x'
-	mov byte [0xb8004], 'y'
-	mov byte [0xb8006], 'k'
-	mov byte [0xb8008], 'u'
-	mov byte [0xb800a], 's'
-	mov byte [0xb800c], 'h'
-	mov byte [0xb800e], ' '
-	mov byte [0xb8010], 'O'
-	mov byte [0xb8012], 'S'
-	mov byte [0xb8014], '!'
 
 	call kernel
 	hlt
