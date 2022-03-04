@@ -1,5 +1,5 @@
 [bits 16]
-kernel equ 0x7ef0
+kernel equ 0x7f00
 [org 0x7c00]
 _start:
 	mov ax, 0x2
