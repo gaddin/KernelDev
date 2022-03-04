@@ -14,17 +14,15 @@ _start:
 	mov cx, 0x1 << 13	;disable cursor 
 	int 0x10
 
-	xor ax, ax
-	xor cx, cx
-	mov ah, 0x2
-	mov al, 0x80
-	mov dh, 0x0
-	mov dl, 0x80
-	mov cl, 0x2
-	mov bx, 0x7e00
-	int 0x13
-	mov sp, 0x7c00
-	mov bp, 0x7c00
+	mov ah, 0x2    
+   	mov al, 63    
+   	mov ch, 0     
+	mov cl, 2     
+   	mov dh, 0     
+   	xor bx, bx    
+   	mov es, bx    
+   	mov bx, 7e00h 
+   	int 0x13
 
 	cli
 	lgdt [.gdtdes]
