@@ -16,10 +16,10 @@
 
 /*function declarations*/
 
-void prints(const char str[], char col, char row);
-void printc(char ch, char col, char row);
+void vga_prints(const char str[], char col, char row);
+void vga_printc(char ch, char col, char row);
 char vga_color(char fg, char bg);
-const char* reverse_string(char bytes[]);
-int strlength(char str[]);
+const char* vga_reverse_string(char bytes[]);
+int vga_strlength(char str[]);
 
 #endif
