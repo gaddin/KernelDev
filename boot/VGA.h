@@ -14,4 +14,12 @@
 #define	VGA_WHITE 0xf
 #define VGA_GRAY 0x8
 
+/*function declarations*/
+
+void prints(const char str[], char col, char row);
+void printc(char ch, char col, char row);
+char vga_color(char fg, char bg);
+const char* reverse_string(char bytes[]);
+int strlength(char str[]);
+
 #endif
