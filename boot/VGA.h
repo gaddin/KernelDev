@@ -19,7 +19,6 @@
 void vga_prints(const char str[], char col, char row);
 void vga_printc(char ch, char col, char row);
 char vga_color(char fg, char bg);
-const char* vga_reverse_string(char bytes[]);
 int vga_strlength(char str[]);
 
 #endif
