@@ -1,3 +1,7 @@
+
+/*
+* hardware input and output
+*/
 #include "hwio.h"
 
 void outb(size_t port, u8 data)
