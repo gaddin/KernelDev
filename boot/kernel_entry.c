@@ -1,5 +1,4 @@
-#include "VGA.h"
-#include "PCI.h"
+#include "devices.h"
 int _start()
 {	
 	/*
