@@ -1,4 +1,4 @@
-#include "hwio.c"
+#include "hwio.h"
 
 void outb(size_t port, u8 data)
 {
@@ -26,7 +26,7 @@ void outw(size_t port, u16 data)
     : "=r" (port)
   );
 }
-void inw(size_t port)
+u16 inw(size_t port)
 {
   u16 data;
   asm volatile (
