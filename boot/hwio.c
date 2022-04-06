@@ -31,8 +31,8 @@ u16 inw(size_t port)
   u16 data;
   asm volatile (
     "inw %0, %1\n\t"
-    : "r" (data)
-    : "=r" (port)
+    : "r" (port)
+    : "=r" (data)
   );
   return data;
 }
