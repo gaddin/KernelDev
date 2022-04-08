@@ -1,5 +1,6 @@
+
 [bits 16]
-kernel equ 0x7f00
+kernel equ 0x7ef0
 [org 0x7c00]
 _start:
 	mov ax, 0x2
@@ -14,15 +15,17 @@ _start:
 	mov cx, 0x1 << 13	;disable cursor 
 	int 0x10
 
-	mov ah, 0x2    
-   	mov al, 63    
-   	mov ch, 0     
-	mov cl, 2     
-   	mov dh, 0     
-   	xor bx, bx    
-   	mov es, bx    
-   	mov bx, 7e00h 
-   	int 0x13
+	xor ax, ax
+	xor cx, cx
+	mov ah, 0x2
+	mov al, 0x80
+	mov dh, 0x0
+	mov dl, 0x80
+	mov cl, 0x2
+	mov bx, 0x7e00
+	int 0x13
+	mov sp, 0x7c00
+	mov bp, 0x7c00
 
 	cli
 	lgdt [.gdtdes]
@@ -66,6 +69,17 @@ pm:
 times 510 - ($-$$) db 0
 dw 0xaa55
 sec2:
+	mov byte [0xb8000], 'O'
+	mov byte [0xb8002], 'x'
+	mov byte [0xb8004], 'y'
+	mov byte [0xb8006], 'k'
+	mov byte [0xb8008], 'u'
+	mov byte [0xb800a], 's'
+	mov byte [0xb800c], 'h'
+	mov byte [0xb800e], ' '
+	mov byte [0xb8010], 'O'
+	mov byte [0xb8012], 'S'
+	mov byte [0xb8014], '!'
 
 	call kernel
 	hlt
