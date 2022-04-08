@@ -1,6 +1,4 @@
 
-
-
 /*
 * hardware input and output
 */
@@ -15,8 +13,8 @@ u8 in8(size_t port)
 {
   u8 data;
   asm volatile ("inb %1, %0"  
-                  : "=a" (data)
-                  : "Nd" (port));
+		  : "=a" (data)
+		  : "Nd" (port));
   return data;
 }
 void out16(size_t port, u16 data)
@@ -28,7 +26,7 @@ u16 in16(size_t port)
 {
   u16 data;
   asm volatile ("inw %1, %0"
-                  : "=a" (data)
-                  : "Nd" (port));
+		  : "=a" (data)
+		  : "Nd" (port));
   return data;
 }
