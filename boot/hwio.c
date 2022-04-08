@@ -1,42 +1,34 @@
 
+
+
 /*
 * hardware input and output
 */
-#include "hwio.h"
 
-void outb(size_t port, u8 data)
+#include "hwio.h"
+#include "types.h"
+void out8(size_t port, u8 data)
 {
-  asm volatile (
-   "outb %0, %1\n\t"
-    : "r" (data)
-    : "=r" (port)
-  );
+  asm volatile ("outb %0, %1":: "a" (data), "Nd" (port));
 }
-u8 inb(size_t port)
+u8 in8(size_t port)
 {
   u8 data;
-  asm volatile (
-    "inb %0, %1\n\t"  
-    : "r" (port)
-    : "=r" (data)
-  );
+  asm volatile ("inb %1, %0"  
+                  : "=a" (data)
+                  : "Nd" (port));
   return data;
 }
-void outw(size_t port, u16 data)
+void out16(size_t port, u16 data)
 {
-  asm volatile (
-    "outw %0, %1\n\t"
-    : "r" (data)
-    : "=r" (port)
-  );
+  asm volatile ("outw %0, %1" ::"a" (data), "Nd" (port));
+  
 }
-u16 inw(size_t port)
+u16 in16(size_t port)
 {
   u16 data;
-  asm volatile (
-    "inw %0, %1\n\t"
-    : "r" (port)
-    : "=r" (data)
-  );
+  asm volatile ("inw %1, %0"
+                  : "=a" (data)
+                  : "Nd" (port));
   return data;
 }
