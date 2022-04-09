@@ -2,6 +2,6 @@
 #define DEVICES_H
 
 #include "VGA.h"
-#include "PCI.h"
+//#include "PCI.h"
 
 #endif

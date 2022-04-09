@@ -4,27 +4,27 @@
 */
 
 #include "hwio.h"
-#include "types.h"
-void out8(size_t port, u8 data)
+#include <stdint.h>
+void out8(uint16_t port, uint8_t data)
 {
   asm volatile ("outb %0, %1":: "a" (data), "Nd" (port));
 }
-u8 in8(size_t port)
+uint8_t in8(uint16_t port)
 {
-  u8 data;
-  asm volatile ("inb %1, %0"  
+uint8_t data;
+  asm volatile ("inb %1, %0" 
 		  : "=a" (data)
 		  : "Nd" (port));
   return data;
 }
-void out16(size_t port, u16 data)
+void out16(uint16_t port, uint16_t data)
 {
-  asm volatile ("outw %0, %1" ::"a" (data), "Nd" (port));
+  asm volatile ("outw %0, %1" :: "a" (data), "Nd" (port));
   
 }
-u16 in16(size_t port)
+uint16_t in16(uint16_t port)
 {
-  u16 data;
+  uint16_t data;
   asm volatile ("inw %1, %0"
 		  : "=a" (data)
 		  : "Nd" (port));

@@ -14,7 +14,7 @@ void vga_prints(const char str[256], char col, char row)
 	int i = 0;
 	do
 	{
-		printc(str[i], col+i, row);
+		vga_printc(str[i], col+i, row);
 		i++;
 	}
 	while(str[i]);	

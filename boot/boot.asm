@@ -1,32 +1,35 @@
 
 [bits 16]
-kernel equ 0x7ef0
+kernel equ 0x7f00
 [org 0x7c00]
-_start:
-	mov ax, 0x2
-	int 0x10
-	mov ah, 0x06   
-	xor al, al    
-	xor cx, cx   
-	mov dx, 0x184F 
-	mov bh, 0x1f   
-	int 0x10
-	mov ah, 0x1		
-	mov cx, 0x1 << 13	;disable cursor 
+jmp _startb
+disk:
+db 0x0
+_startb:
+	mov [disk], dl
+	mov ax, 0x2401
+	int 0x15
+
+	mov ax, 0x3
 	int 0x10
 
-	xor ax, ax
-	xor cx, cx
 	mov ah, 0x2
-	mov al, 0x80
-	mov dh, 0x0
-	mov dl, 0x80
-	mov cl, 0x2
-	mov bx, 0x7e00
+	mov al, 127
+	mov ch, 0
+	mov dl, [disk]
+	mov cl, 2
+	mov bx, sec2
 	int 0x13
-	mov sp, 0x7c00
-	mov bp, 0x7c00
+	mov ah, 0x06
+	xor al, al
+	xor cx, cx
+	mov dx, 0x184F
+	mov bh, 0x1f
+	int 0x10
 
+	mov ah, 0x1
+	mov cx, 0x1 << 13	;disable cursor
+	int 0x10
 	cli
 	lgdt [.gdtdes]
 	mov eax, cr0
@@ -61,11 +64,12 @@ _start:
 	dd .gdtstart
 CSE equ .code - .gdtstart
 DSE equ .data - .gdtstart
-
 [bits 32]
 pm:
+	mov ax, DSE
+	mov ds, ax
+	mov ss, ax
 	jmp sec2
-	jmp $	
 times 510 - ($-$$) db 0
 dw 0xaa55
 sec2:
@@ -80,7 +84,13 @@ sec2:
 	mov byte [0xb8010], 'O'
 	mov byte [0xb8012], 'S'
 	mov byte [0xb8014], '!'
-
+	mov esp, kernel_stack_top
 	call kernel
+	jmp $
 	hlt
 times 1024 - ($-$$) db 0
+section .bss
+align 4
+kernel_stack_bottom: equ $
+	resb 32768
+kernel_stack_top:
