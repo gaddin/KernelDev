@@ -1,63 +1,52 @@
-;	this is only a temporary bootloader so i can load the kernel into memory. 
-;	I stole the GDT from wikipedia
-;	the kernel will be loaded via grub in the future
+; Author: Francisco Fischer
+; 2021 - 2022
 ;
-;
+; This is only a temporary bootloader to load the kernel into memory. 
+; The GDT has been copied from: https://de.wikipedia.org/wiki/GDT.
+; The kernel will be loaded via grub in the future.
+KERNEL_ADDRESS equ 0x7f00
 [bits 16]
-kernel equ 0x7f00
-VGA_MEM equ 0xb8000
 [org 0x7c00]
-jmp _startb
-stop:
+jmp ENTRY
+HALT:
 	hlt
-	jmp stop
-disk:
-db 0x0
-_startb:
-	mov [disk], dl		; the bios populates dl with the drive number so we need to save it for later
-				
-	mov ax, 0x2
-	int 0x10
-
-	mov ah, 0x2
+	jmp HALT
+ENTRY:
+	mov ah, 2
 	mov al, 127
 	mov ch, 0
-	mov dl, [disk]
 	mov cl, 2
-	mov bx, sec2
+	mov bx, SECTOR_2
 	int 0x13
-	mov ah, 0x06
+	mov ax, 2
+	int 0x10
+	mov ah, 6
 	xor al, al
 	xor cx, cx
 	mov dx, 0x184F
-	mov bh, 0x1f
+	mov bh, 0x0f
 	int 0x10
 	mov ah, 0x1
-	mov cx, 0x1 << 13	;disable cursor
+	mov cx, (0x1 << 13)	; disable cursor
 	int 0x10
 	cli
 	lgdt [.gdtdes]
 	mov eax, cr0
-	or eax, 1
-	mov cr0, eax
-	
-	jmp CSE:pm
+	or eax, 1		; set protectedmode bit 
+	mov cr0, eax	
+	jmp CODE_SEGMENT_DESCRIPTOR : protected_mode
 ; offset 0x0
 .gdtstart:
 .nulldescriptor:
 	dq 0
-
-; offset 0x8
-.code:				; cs should point to this descriptor
+.code:	    		; cs should point to this descriptor
 	dw 0xffff		; segment limit first 0-15 bits
 	dw 0			; base first 0-15 bits
 	db 0			; base 16-23 bits
 	db 0x9a			; access byte
-	db 0xcf		; high 4 bits (flags) low 4 bits (limit 4 last bits)(limit is 20 bit wide)
+	db 0xcf			; high 4 bits (flags) low 4 bits (limit 4 last bits)(limit is 20 bit wide)
 	db 0x0			; base 24-31 bits
-;	db 0xffff0000009acf00ffff00000092cf00
-; offset 0x10
-.data:				; ds, ss, es, fs, and gs should point to this descriptor
+.data:      		; ds, ss, es, fs, and gs should point to this descriptor
 	dw 0xffff		; segment limit first 0-15 bits
 	dw 0			; base first 0-15 bits
 	db 0			; base 16-23 bits
@@ -68,27 +57,27 @@ _startb:
 .gdtdes:
 	dw .gdtend - .gdtstart - 1
 	dd .gdtstart
-CSE equ .code - .gdtstart
-DSE equ .data - .gdtstart
+CODE_SEGMENT_DESCRIPTOR equ .code - .gdtstart
+DATA_SEGMENT_DESCRIPTOR equ .data - .gdtstart
 [bits 32]
-pm:
-	mov ax, DSE
+protected_mode:
+	mov ax, DATA_SEGMENT_DESCRIPTOR
 	mov ss, ax
 	mov ds, ax
-	mov ax, 0x0
+	mov ax, 0
 	mov fs, ax
 	mov gs, ax
 	mov es, ax
-	jmp sec2
+	jmp SECTOR_2
 times 510 - ($-$$) db 0
-dw 0xaa55
-sec2:
-	mov esp, kernel_stack_top
-	call kernel
-	jmp stop
+dw 0xaa55			; MBR signature
+SECTOR_2:
+	mov esp, KERNEL_STACK_TOP
+	call KERNEL_ADDRESS
+	jmp HALT
 times 1024 - ($-$$) db 0
 section .bss
 align 4
-kernel_stack_bottom: equ $
+KERNEL_STACK_BOTTOM: equ $
 	resb 32768
-kernel_stack_top:
+KERNEL_STACK_TOP:

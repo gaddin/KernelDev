@@ -1,9 +1,8 @@
 #ifndef VGA_H
 #define VGA_H
 
-/*
-	VGA COLOR MACROS
-*/
+#include <stdint.h>
+/* VGA COLOR MACROS */
 #define VGA_BLACK 0x0
 #define VGA_BLUE 0x1  
 #define VGA_GREEN 0x2
@@ -14,11 +13,9 @@
 #define	VGA_WHITE 0xf
 #define VGA_GRAY 0x8
 
-/*function declarations*/
+void vga_printc(int8_t data, int8_t col, int8_t row);
+void vga_prints(const char* str, int8_t col, int8_t row);
+int8_t vga_color(int8_t foreground, int8_t background);
+uint16_t vga_strlength(char str[]);
 
-void vga_prints(const char* str, char col, char row);
-void vga_printc(char ch, char col, char row);
-char vga_color(char fg, char bg);
-int vga_strlength(char str[]);
-
-#endif
+#endif /* VGA_H */

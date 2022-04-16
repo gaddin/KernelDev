@@ -1,12 +1,13 @@
-#pragma once
-/*includes*/
-#include <stdint.h>
-void out8(uint16_t port, uint8_t data); // 8-bit value
-uint8_t in8(uint16_t port);
+#ifndef HWIO_H
+#define HWIO_H
 
-void out16(uint16_t port, uint16_t data); // 16-bit value
-uint16_t in16(uint16_t port);
-void enable_a20();
-//TODO DEBUG FUNCTION REMOVE AS SOON AS POSSIBLE
-void disable_a20();
+/* output an 8-bit value to a port */
+void out8(uint16_t port, uint8_t data) ;
+/* get an 8-bit value from a port */
+uint8_t in8(uint16_t port) ;
+/* */
+void out16(uint16_t port, uint16_t data) ;  
+uint16_t in16(uint16_t port) ;
+void enable_a20() ;
 
+#endif /* HWIO_H */
