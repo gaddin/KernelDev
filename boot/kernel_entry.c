@@ -1,11 +1,10 @@
 #include "VGA.h"
 #include "hwio.h"
 
-int32_t _start() 
+int32_t _kmain() 
 {
     enable_a20() ;
     kernel_log_init() ;
-    enable_a20() ;
     do
     {
     }
