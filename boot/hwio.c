@@ -4,8 +4,8 @@
 #include "hwio.h"
 #include "VGA"
 
-void out8(uint16_t port, uint8_t data) 
-{
+void outb(uint16_t port, uint8_t data) {
+
     asm volatile ("outb %0, %1"
                     :
                     : "a" (data),"Nd" (port)) ;
@@ -14,35 +14,35 @@ void out8(uint16_t port, uint8_t data)
 }
 
 
-uint8_t in8(uint16_t port) 
+uint8_t inb(uint16_t port) 
 {
     uint8_t data ;
     
     asm volatile ("inb %1, %0" 
-                    : "=a" (data)
-		    : "Nd" (port)) ;
+					: "=a" (data)
+					: "Nd" (port)) ;
     
     return data ;
 }
 
 
-void out16(uint16_t port, uint16_t data) 
-{
+void outw(uint16_t port, uint16_t data) {
+
     asm volatile ("outw %0, %1" 
                     :
-		    : "a" (data), "Nd" (port)) ;
+					: "a" (data), "Nd" (port)) ;
   
     return;
 }
 
 
-uint16_t in16(uint16_t port) 
-{
+uint16_t inw(uint16_t port) {
+
     uint16_t data;
     
     asm volatile ("inw %1, %0"
                     : "=a" (data)
-		    : "Nd" (port)) ;
+					: "Nd" (port)) ;
     
     return data ;
 }

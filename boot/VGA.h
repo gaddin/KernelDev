@@ -13,9 +13,11 @@
 #define	VGA_WHITE 0xf
 #define VGA_GRAY 0x8
 
+#define VGA_SET_COLOR(FOREGROUND, BACKGROUND)\
+	( FOREGROUND | (BACKGROUND << 4) )
+
 void vga_printc(int8_t data, int8_t col, int8_t row);
 void vga_prints(const char* str, int8_t col, int8_t row);
-int8_t vga_color(int8_t foreground, int8_t background);
 uint16_t vga_strlength(char str[]);
 
 #endif /* VGA_H */
