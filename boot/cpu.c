@@ -2,10 +2,10 @@
 #include "hwio.h"
 #include <stdint.h>
 
-void load_idt (idt_ptr *idt_descriptor) {
+void load_idt (idt_ptr idt_des) {
 	asm volatile ("lidt %0"
 		      :
-		      : (idt_descriptor));
+		      : (idt_des)) ;
 	
 	return ;
 }
