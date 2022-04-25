@@ -4,7 +4,7 @@
 int32_t _kmain () {
 
     enable_a20() ;
-    kernel_log_init() ;
+   
     
 	return 0 ;
 }
