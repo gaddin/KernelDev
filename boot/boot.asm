@@ -36,14 +36,14 @@ ENTRY:
 .gdtstart:
 .nulldescriptor:
 	dq 0
-.code:	    		; cs should point to this descriptor
+.code_descriptor:	    	; cs should point to this descriptor
 	dw 0xffff		; segment limit first 0-15 bits
 	dw 0			; base first 0-15 bits
 	db 0			; base 16-23 bits
 	db 0x9a			; access byte
 	db 0xcf			; high 4 bits (flags) low 4 bits (limit 4 last bits)(limit is 20 bit wide)
 	db 0			; base 24-31 bits
-.data:      		; ds, ss, es, fs, and gs should point to this descriptor
+.data_descriptor:      		; ds, ss, es, fs, and gs should point to this descriptor
 	dw 0xffff		; segment limit first 0-15 bits
 	dw 0			; base first 0-15 bits
 	db 0			; base 16-23 bits
@@ -54,17 +54,17 @@ ENTRY:
 .gdtdes:
 	dw .gdtend - .gdtstart - 1
 	dd .gdtstart
-CODE_SEGMENT_DESCRIPTOR equ .code - .gdtstart
-DATA_SEGMENT_DESCRIPTOR equ .data - .gdtstart
+CODE_SEGMENT_DESCRIPTOR equ .code - .gdtstart ; calculate the CODE segment address relative to the gdt-start
+DATA_SEGMENT_DESCRIPTOR equ .data - .gdtstart ; claculate the DATA segment address relative to the gdt-start
 [bits 32]
 protected_mode:
 	mov ax, DATA_SEGMENT_DESCRIPTOR
 	mov ss, ax
 	mov ds, ax
-	mov ax, 0
+	mov es, ax
+	mov ax, 0		; 
 	mov fs, ax
 	mov gs, ax
-	mov es, ax
 	jmp SECTOR_2
 times 510 - ($-$$) db 0
 dw 0xaa55			; MBR signature
