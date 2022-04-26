@@ -1,11 +1,11 @@
 #ifndef CPU_H
 #define CPU_H
 
-typdef struct
+typedef struct
 {
     uint16_t offset_0;
     uint16_t selector;
-    uint8_t reserved;
+    uint8_t _reserved;
     uint8_t type_attributes;
     uint16_t offset_1;
 }
