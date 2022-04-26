@@ -11,7 +11,7 @@ typdef struct
 }
 idt_descriptor __attribute__((packed));
 
-typedef idt_descriptor* idt_ptr;
+typedef idt_descriptor idt_ptr;
 void load_idt();
 void enable_a20();
 
