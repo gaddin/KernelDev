@@ -6,7 +6,7 @@ Feel free to take a look and download my shitty kernel.
 - implement GRUB alongside the current bootloader (add argument to buildscript to choose between those two)
 - add VESA (BIOS and CSM) and UGA (Universal Graphics Adapter) graphics support
 - Basic filesystem (FAT 16 or similar)
-- char devices (primarily for VESA framebuffering, stdout and stdin)
+- char devices (primarily for VESA/VGA framebuffering, stdout and stdin)
 - add a lookup table for the systemcall interrupt to jump to the address the %eax parameter points to
 
 # DONE
