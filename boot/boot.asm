@@ -2,7 +2,7 @@
 ; This is only a temporary bootloader to load the kernel into memory. 
 ; The GDT has been copied from: https://de.wikipedia.org/wiki/GDT.
 ; The kernel will be loaded via grub in the future.
-KERNEL_ADDRESS equ 0x7f00
+KERNEL_ADDRESS equ 0x10000
 [bits 16]
 [org 0x7c00]
 jmp ENTRY
