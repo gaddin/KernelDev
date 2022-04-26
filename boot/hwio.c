@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include "hwio.h"
-#include "VGA"
+#include "VGA.h"
 
 void outb(uint16_t port, uint8_t data) {
 
