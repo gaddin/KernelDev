@@ -1,6 +1,6 @@
 # DISCLAIMER
 I don't go to University or anything. Everything you see is self taught.<br>Expect some real bad code and horribly written comments. 
-I have literally no idea what i'm doing. Everything you see is the product of my extensive research and study.
+I have literally no idea what i'm doing. Everything you see is the product of my extensive research and study.<br>
 Having that out of the way.<br>You basically have full access to the complete source code and can do with it whatever you want (credits not needed but appreciated :) ).
 
 # KernelDev
