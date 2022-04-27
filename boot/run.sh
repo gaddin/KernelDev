@@ -9,5 +9,5 @@ $HOME/cross-compiler/bin/i686-elf-ld  -o kernel.bin -Ttext 0x10000 kernel_entry.
 cat boot.bin kernel.bin > kernel.elf
 sudo dd if=/dev/zero of=kernel.iso bs=512 count=1440
 dd if=kernel.elf of=kernel.iso  conv=notrunc bs=1024 count=2
-rm *.o *.elf #kernel.bin 
+rm *.o *.elf
 sudo qemu-system-x86_64 -k 10 kernel.iso -monitor stdio 
