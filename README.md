@@ -3,7 +3,7 @@ I don't study Computer Science or anything i am just interested in this topic.<b
 Everything you see is self taught.<br>
 Expect some real bad code and horribly written comments.<br> 
 I have literally no idea what i'm doing. Everything you see is the product of my extensive research and study.<br>
-Having that out of the way.<br>You basically have full access to the complete source code and can do with it whatever you want (credits not needed but appreciated :) ).
+Having that out of the way, you basically have full access to the complete source code and can do with it whatever you want (credits not needed but appreciated :) ).
 
 # KernelDev
 KernelDev is a small project of mine where i research about bootloaders and OS-development and share my progress in form of a small (yet badly written) operating system kernel.<br>
