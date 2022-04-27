@@ -1,5 +1,5 @@
 # DISCLAIMER
-I have literally no idea what i'm doing. Everything you see is the product of my extensive research.
+I have literally no idea what i'm doing. Everything you see is the product of my extensive research and study.
 
 # KernelDev
 KernelDev is a small project of mine where i research about bootloaders and OS-development and share my progress in form of a small (yet badly written) operating system kernel.<br>
