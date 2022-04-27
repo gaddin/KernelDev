@@ -11,7 +11,7 @@ Feel free to take a look and download my shitty kernel.
 
 # DONE
 - MBR bootloader (VGA-bios)
-- 5x80 16-color Text-mode vgafb 
+- 25x80 16-color Text-mode vgafb 
 - global descriptor table
 - 8- and 16-bit i/o port functions (inb, outb, inw, outw)
 - a20
