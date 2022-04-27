@@ -1,4 +1,4 @@
-#include "graphics/VGA.h"
+#include "graphics.h"
 #include "hwio.h"
 
 int32_t _kmain () {
