@@ -61,8 +61,8 @@ protected_mode:
 	mov ax, DATA_SEGMENT_DESCRIPTOR
 	mov ss, ax
 	mov ds, ax
-	mov es, ax
 	mov ax, 0		; 
+	mov es, ax
 	mov fs, ax
 	mov gs, ax
 	jmp SECTOR_2
