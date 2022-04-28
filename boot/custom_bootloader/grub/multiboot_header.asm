@@ -8,7 +8,7 @@ MAGIC_NUMBER equ 0xE85250D6
 .header_start:
 
 MAGIC:      dd MAGIC_NUMBER
-ARCH:       dd 0    ; 32-bit protected 
+ARCH:       dd 0           ; 32-bit protected 
 LENGTH:     dd .header_end - .header_start
 CHECKSUM:   dd -( .header_end - .header_start + MAGIC_NUMBER )
 
@@ -18,7 +18,7 @@ _start:
     jmp halt
 
 section .bss
-stack: equ $
+stack_bottom: equ $
 resb _16_KiB
 stack_top:
 
