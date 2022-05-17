@@ -3,6 +3,17 @@
 
 #include "system.h"
 
+#define MAX_IDT_SIZE 256
+
+#define MASK_ADDRESS(FLAGS, ADDRESS)
+  #if FLAGS == HI
+    (ADDRESS >>)
+  #elseif FLAGS == LO
+
+  #endif
+
+#define LIDT(); asm volatile ("lidt (%0)"::"Nd"(idt_address));
+
 /* SEGMENTS */
 #define CODE_SEGMENT 0x8
 /*FLAGS*/
@@ -16,27 +27,10 @@ typedef struct {
 
 typedef struct {
     uint16_t offset_1;
-    uint16_t selector;
+    uint16_t segment_selector;
     uint8_t _reserved;
-    uint8_t attributes; // use flags 
+    uint8_t attributes;
     uint16_t offset_2;
-}IDT_DESCRIPTOR_32 __attribute__((packed));
-
-inline IDT_DESCRIPTOR_32 populate_idt_descriptor(IDT_DESCRIPTOR_32 idt_descriptor, uint32_t handler_address) {
-    static uint16_t offset;
-    idt_descriptor {
-        .offset_1 = offset;
-        .selector = CODE_SEGMENT;
-        ._reserved = 0x0;
-        .attributes = RING_0;
-        .offset_2 = handler_address;
-    };
-
-    return idt_descriptor;
-}
-
-inline void install_idt() {
-    
-}
+}IDT_ENTRY_32 __attribute__((packed));
 
 #endif /* IDT_H */
