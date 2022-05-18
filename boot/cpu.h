@@ -4,6 +4,7 @@
 
 #include "types.h"
 #include "IDT.h"
+#include "hwio.h"
 
 void enable_a20();
 
