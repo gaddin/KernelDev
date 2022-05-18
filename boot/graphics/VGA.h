@@ -1,7 +1,7 @@
 #ifndef VGA_H
 #define VGA_H
 
-#include <stdint.h>
+#include "../types.h"
 /* VGA COLOR MACROS */
 #define VGA_BLACK 0x0
 #define VGA_BLUE 0x1  
