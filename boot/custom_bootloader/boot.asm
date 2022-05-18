@@ -3,6 +3,8 @@
 ; The GDT has been copied from: https://de.wikipedia.org/wiki/GDT.
 ; The kernel will be loaded via grub in the future.
 KERNEL_ADDRESS equ 0x10000
+DISK_SERVICE equ 0x13
+VIDEO_SERVICE equ 0x10
 [bits 16]
 [org 0x7c00]
 jmp ENTRY
@@ -15,18 +17,18 @@ ENTRY:
 	mov ch, 0
 	mov cl, 2
 	mov bx, SECTOR_2
-	int 0x13
+	int DISK_SERVICE
 	mov ax, 2
-	int 0x10
+	int VIDEO_SERVICE
 	mov ah, 6
 	xor al, al
 	xor cx, cx
-	mov dx, 0x184F
+	mov dx, 0x184F 		; DH = row 0x18(24), DL = column 4f(79)
 	mov bh, 0x0f
-	int 0x10
+	int VIDEO_SERVICE
 	mov ah, 1
 	mov cx, (0x1 << 13)	; disable cursor
-	int 0x10
+	int VIDEO_SERVICE
 	cli
 	lgdt [.gdtdes]
 	mov eax, cr0
@@ -61,7 +63,7 @@ protected_mode:
 	mov ax, DATA_SEGMENT_DESCRIPTOR
 	mov ss, ax
 	mov ds, ax
-	mov ax, 0		; 
+	mov ax, 0		
 	mov es, ax
 	mov fs, ax
 	mov gs, ax
@@ -74,7 +76,7 @@ SECTOR_2:
 	jmp HALT
 times 1024 - ($-$$) db 0
 section .bss
-align 4
-KERNEL_STACK_BOTTOM: equ $
+align 4				
+KERNEL_STACK_BOTTOM: equ $	; start the stack-space at the current address
 	resb 32768
 KERNEL_STACK_TOP:
