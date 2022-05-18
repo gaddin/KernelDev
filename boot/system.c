@@ -20,7 +20,7 @@ void memcpy(void *dst, void *src, size_t num) {
 
 void *malloc(size_t size) {
     
-    
+    void* block
     return block;
 }
 
