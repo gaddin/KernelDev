@@ -9,7 +9,7 @@
   #if FLAGS == HI
     (ADDRESS & 0xFFFF0000) << 16
   #elseif FLAGS == LO
-    (ADDRESS & 0x0000FFFF) >> 16 
+    (ADDRESS & 0xFFFF << 16) >> 16 
   #endif
 
 #define LIDT(); asm volatile ("lidt (%0)"::"Nd"(idt_address));
