@@ -1,13 +1,4 @@
-#include "cpu,h"
-#include "hwio.h"
-
-void load_idt (idt_ptr *idt_des) {
-	
-	asm volatile ("lidt (%0)" :: (idt_des)) ;
-	
-	return ;
-}
-
+#include "cpu.h"
 
 void enable_a20() {
     
