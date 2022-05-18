@@ -4,7 +4,7 @@
 #include "types.h"
 
 typedef struct {
-  void* ptr_to_next;
+  header* ptr_to_next;
   size_t size;
 } header;
 
