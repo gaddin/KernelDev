@@ -1,6 +1,6 @@
 #include "IDT.h"
 
-IDT_ENTRY_32 populate_idt_entry(uint8_t IDT_ENTRY_32 idt_entry, uint32_t handler_address) {
+IDT_ENTRY_32 populate_idt_entry(uint8_t idt_entry, void *handler_address) {
 
     static uint16_t offset;
     
