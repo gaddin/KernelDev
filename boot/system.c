@@ -2,7 +2,6 @@
 #include "types.h"
 
 void *memset (void *dst, uint8_t byte, size_t count) {
-
     for(size_t i = 0; i <= count; i++) {
         dst[i++] = byte;
     }
