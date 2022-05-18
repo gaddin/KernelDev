@@ -11,5 +11,13 @@ inline int pow(int base, int exponent) {
     return power; 
 }
 
-
+inline int fact(int num) {
+    
+    int product;
+    int num_size = num - 1;
+    for(int i = 0; i <= num_size; i++) {
+        product = num * (num--);
+    }
+    return product;
+}
 #endif /*MATH_H*/
