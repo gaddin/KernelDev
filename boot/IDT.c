@@ -8,17 +8,16 @@ IDT_ENTRY_32 populate_idt_entry(uint8_t IDT_ENTRY_32 idt_entry, uint32_t handler
         .offset_1 = MASK_ADDRESS(HI, handler_address);
         .segment_selector = CODE_SEGMENT;
         ._reserved = 0x0;
-        .attributes = RING_0;
+        .attributes = STD_H;
         .offset_2 = MASK_ADDRESS(LO, handler_address);
     };
-    
     
     return idt_entry;
 }
 
 void install_idt() {
     
-    idt_ptr* idt_address = {}
+    idt_ptr* idt_address = { .limit = sizeof(IDT) * MAX, .base = &IDT };
     lidt();
 }
 
