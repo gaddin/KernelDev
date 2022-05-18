@@ -12,7 +12,7 @@
     (ADDRESS & 0xFFFF << 16) >> 16 
   #endif
 
-#define LIDT(); asm volatile ("lidt (%0)"::"Nd"(idt_address));
+#define LIDT(); asm volatile ("lidt (%0)"::"m"(idt_address)); /* mov idtr, idt_address*/
 
 /* SEGMENTS */
 #define CODE_SEGMENT 0x8
