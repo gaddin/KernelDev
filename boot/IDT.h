@@ -8,7 +8,7 @@
 #define MASK_ADDRESS(FLAGS, ADDRESS)
   #if FLAGS == HI
     (ADDRESS & 0xFFFF0000) << 16
-  #elseif FLAGS == LO
+  #elif FLAGS == LO
     (ADDRESS & 0xFFFF << 16) >> 16 
   #endif
 
